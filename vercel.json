@@ -1,5 +1,8 @@
 {
-    "builds": [
-      {"src": "/app/api.py", "use": "@now/python"}
-    ]
-  }
+	"version": 2,
+	"public": false,
+	"builds": [{ "src": "main.py", "use": "@vercel/python" }],
+	"routes": [
+		{ "src": "/news", "dest": "app.py" }
+	]
+}
