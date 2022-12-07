@@ -1,12 +1,15 @@
 from fastapi import FastAPI 
 import requests
 from fastapi.middleware.cors import CORSMiddleware
+from datetime import date
 
 app = FastAPI()
 
 @app.get('/news')
 def html():
-    response = requests.request('GET','https://newsapi.org/v2/everything?q=education&from=2022-11-06&sortBy=publishedAt&apiKey=da9d1c5a4e954cdfbb770d05c4a571fc')
+    today = date.today()
+    dates = today.strftime("%Y-%m-%d")
+    response = requests.request('GET',f'https://newsapi.org/v2/everything?q=education&from={dates}&sortBy=publishedAt&apiKey=da9d1c5a4e954cdfbb770d05c4a571fc')
     return response.json()
 
 origins = ["*"]
